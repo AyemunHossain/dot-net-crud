@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Rocky.Models.Category>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-outline-primary">
+                <i class="fas fa-plus"></i> &nbsp; Create New Category
+            </a> 
+        </div>
+    </div>
+    <br /><br />
+
+    @if (Model.Count() > 0)
+            {
+                <table class="table table-bordered table-striped" style="width:100%" >
+                    <thead>
+                        <tr>
+                            <th>
+                                Category name
+                            </th>
+                            <th>
+                                Display Order
+                            </th>
+                            <th>
+                                Options
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var obj in Model)
+                            {
+                        <tr>
+                            <td width="50%">
+                                @obj.Name
+                            </td>
+                            <td width="30%">
+                                @obj.DisplayOrder 
+                            </td>
+                            <td>
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-primary mr-1">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-controller="Category" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger ml-1">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                            }
+                    </tbody>
+                </table>
+            }
+           
+    else
+            {
+        <p> No Category To show</p>
+            }
+
+
+
+
+
+
+</div>
